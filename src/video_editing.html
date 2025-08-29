@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI海报设计 - RanJok创作平台</title>
+    <title>AI视频剪辑 - RanJok创作平台</title>
     <style>
         * {
             margin: 0;
@@ -187,8 +187,8 @@
             line-height: 1.6;
         }
 
-        /* Demo Section */
-        .demo {
+        /* Video Demo Section */
+        .video-demo {
             padding: 80px 0;
             background: rgba(0, 0, 0, 0.3);
         }
@@ -213,32 +213,32 @@
             font-size: 1.1rem;
         }
 
-        .demo-steps {
+        .demo-features {
             list-style: none;
         }
 
-        .demo-steps li {
+        .demo-features li {
             display: flex;
             align-items: center;
             margin-bottom: 1rem;
             color: #cccccc;
         }
 
-        .step-number {
+        .feature-check {
             background: linear-gradient(135deg, #FFD700, #FFA500);
             color: #000000;
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
             margin-right: 1rem;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
-        .demo-visual {
+        .video-player {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 215, 0, 0.2);
@@ -249,42 +249,129 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
-
-        .poster-preview {
-            width: 200px;
-            height: 280px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border-radius: 12px;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #000000;
             position: relative;
             overflow: hidden;
         }
 
-        .poster-preview::before {
+        .video-preview {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #000000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .timeline {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-            animation: shine 2s infinite;
+            height: 100%;
+            width: 30%;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 2px;
+            animation: progress 3s ease-in-out infinite;
         }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        /* Process Section */
+        .process {
+            padding: 80px 0;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #000000;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+
+        .process-step p {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #FFD700, transparent);
+            z-index: 1;
         }
 
         /* Stats Section */
         .stats {
             padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
             text-align: center;
         }
 
@@ -346,7 +433,7 @@
                 gap: 3rem;
             }
             
-            .demo-visual {
+            .demo-content {
                 order: -1;
             }
         }
@@ -392,9 +479,17 @@
                 font-size: 1.5rem;
             }
             
-            .demo-visual {
+            .video-player {
                 padding: 2rem 1.5rem;
                 min-height: 300px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step:not(:last-child)::after {
+                display: none;
             }
 
             .stats-grid {
@@ -430,19 +525,22 @@
                 font-size: 1.2rem;
             }
             
-            .demo-visual {
+            .video-player {
                 padding: 1.5rem 1rem;
             }
             
-            .poster-preview {
-                width: 150px;
-                height: 210px;
-                font-size: 2rem;
+            .video-preview {
+                height: 150px;
+            }
+            
+            .play-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
             }
             
             .stats-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
             }
             
             .stat-number {
@@ -468,78 +566,114 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>AI海报设计</h1>
-            <p>让人工智能为您创造令人惊艳的海报设计。只需输入您的想法，AI将在几秒钟内生成专业级别的海报作品。</p>
-            <a href="#demo" class="cta-button">立即体验</a>
+            <h1>AI视频剪辑</h1>
+            <p>革命性的AI视频编辑技术，让每个人都能创作出电影级别的视频作品。智能剪辑、自动配乐、一键成片。</p>
+            <a href="#demo" class="cta-button">开始创作</a>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
-            <h2 class="section-title">强大功能</h2>
+            <h2 class="section-title">智能剪辑功能</h2>
             <div class="features-grid">
                 <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>智能场景识别</h3>
+                    <p>AI自动识别视频中的关键场景和精彩片段，智能筛选最佳镜头，让您的视频更具观赏性。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✂️</div>
+                    <h3>自动剪辑</h3>
+                    <p>基于内容理解的智能剪辑，自动去除冗余片段，保留精华内容，让视频节奏更加紧凑。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>智能配乐</h3>
+                    <p>AI分析视频情绪和节奏，自动匹配最适合的背景音乐，让您的视频更具感染力。</p>
+                </div>
+                <div class="feature-card">
                     <div class="feature-icon">🎨</div>
-                    <h3>智能设计生成</h3>
-                    <p>基于深度学习的AI算法，能够理解您的设计需求，自动生成符合品牌调性的海报设计方案。</p>
+                    <h3>风格滤镜</h3>
+                    <p>提供多种专业级调色方案和风格滤镜，一键应用电影级视觉效果，提升视频质感。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>自动字幕</h3>
+                    <p>AI语音识别技术，自动生成准确的字幕文本，支持多语言识别和样式自定义。</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3>极速创作</h3>
-                    <p>告别漫长的设计过程，从创意到成品只需30秒，让您的灵感瞬间变为现实。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>精准匹配</h3>
-                    <p>AI深度理解行业特点和目标受众，为不同场景定制最适合的视觉风格和布局方案。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>灵活编辑</h3>
-                    <p>生成后可进行细节调整，支持文字、颜色、布局的自由编辑，满足个性化需求。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>多尺寸适配</h3>
-                    <p>一键生成适配各种平台的尺寸版本，从社交媒体到户外广告，全方位覆盖。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💎</div>
-                    <h3>专业品质</h3>
-                    <p>输出高分辨率设计文件，支持印刷级别的质量要求，确保每一个细节都完美呈现。</p>
+                    <h3>快速渲染</h3>
+                    <p>云端GPU加速渲染，大幅缩短视频处理时间，让您的创作效率提升10倍以上。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Demo Section -->
-    <section class="demo" id="demo">
+    <!-- Video Demo Section -->
+    <section class="video-demo" id="demo">
         <div class="container">
             <div class="demo-container">
                 <div class="demo-content">
-                    <h2>简单三步，完成设计</h2>
-                    <p>无需专业设计技能，任何人都能创造出令人印象深刻的海报作品。</p>
-                    <ol class="demo-steps">
+                    <h2>看看AI如何工作</h2>
+                    <p>上传您的原始视频素材，AI将在几分钟内为您创作出专业水准的视频作品。</p>
+                    <ul class="demo-features">
                         <li>
-                            <span class="step-number">1</span>
-                            描述您的设计需求和目标受众
+                            <span class="feature-check">✓</span>
+                            自动识别精彩片段和关键时刻
                         </li>
                         <li>
-                            <span class="step-number">2</span>
-                            AI分析并生成多个设计方案
+                            <span class="feature-check">✓</span>
+                            智能调整视频节奏和转场效果
                         </li>
                         <li>
-                            <span class="step-number">3</span>
-                            选择喜欢的方案并进行个性化调整
+                            <span class="feature-check">✓</span>
+                            匹配合适的背景音乐和音效
                         </li>
-                    </ol>
-                    <a href="#" class="cta-button">开始创作</a>
+                        <li>
+                            <span class="feature-check">✓</span>
+                            应用专业级调色和视觉效果
+                        </li>
+                    </ul>
+                    <a href="#" class="cta-button">上传视频试试</a>
                 </div>
-                <div class="demo-visual">
-                    <div class="poster-preview">🎨</div>
-                    <p style="color: #FFD700; font-weight: 600;">AI正在为您生成海报...</p>
-                    <p style="color: #cccccc; font-size: 0.9rem;">预计完成时间：30秒</p>
+                <div class="video-player">
+                    <div class="video-preview">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <p style="color: #FFD700; font-weight: 600;">AI视频剪辑演示</p>
+                    <p style="color: #cccccc; font-size: 0.9rem;">点击播放查看效果</p>
+                    <div class="timeline"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2 class="section-title">创作流程</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-icon">📤</div>
+                    <h3>上传素材</h3>
+                    <p>支持多种视频格式，批量上传您的原始视频素材，AI将自动分析内容。</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">🤖</div>
+                    <h3>AI分析</h3>
+                    <p>智能识别场景、人物、动作和情绪，理解视频内容并制定最佳剪辑方案。</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">✨</div>
+                    <h3>自动剪辑</h3>
+                    <p>AI执行剪辑方案，添加转场、配乐、字幕和特效，生成完整的视频作品。</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">🎯</div>
+                    <h3>个性调整</h3>
+                    <p>预览AI生成的作品，根据需要进行细节调整，确保符合您的创作意图。</p>
                 </div>
             </div>
         </div>
@@ -548,23 +682,23 @@
     <!-- Stats Section -->
     <section class="stats">
         <div class="container">
-            <h2 class="section-title">用户信赖的选择</h2>
+            <h2 class="section-title">创作数据</h2>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">50万+</div>
-                    <div class="stat-label">设计作品生成</div>
+                    <div class="stat-number">100万+</div>
+                    <div class="stat-label">视频处理量</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">10万+</div>
-                    <div class="stat-label">活跃用户</div>
+                    <div class="stat-number">5分钟</div>
+                    <div class="stat-label">平均处理时间</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">98%</div>
+                    <div class="stat-number">95%</div>
                     <div class="stat-label">用户满意度</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">30秒</div>
-                    <div class="stat-label">平均生成时间</div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">支持格式</div>
                 </div>
             </div>
         </div>
@@ -602,6 +736,24 @@
             }
         });
 
+        // Video player interaction
+        const playButton = document.querySelector('.play-button');
+        const videoPreview = document.querySelector('.video-preview');
+        
+        playButton.addEventListener('click', () => {
+            videoPreview.style.background = 'linear-gradient(135deg, #FFD700, #FFA500)';
+            playButton.innerHTML = '⏸';
+            playButton.style.background = 'rgba(0, 0, 0, 0.8)';
+            playButton.style.color = '#FFD700';
+            
+            setTimeout(() => {
+                videoPreview.style.background = 'linear-gradient(135deg, #2d2d2d, #1a1a1a)';
+                playButton.innerHTML = '▶';
+                playButton.style.background = 'linear-gradient(135deg, #FFD700, #FFA500)';
+                playButton.style.color = '#000000';
+            }, 3000);
+        });
+
         // Animate stats on scroll
         const observerOptions = {
             threshold: 0.5,
@@ -615,7 +767,8 @@
                     statNumbers.forEach(stat => {
                         const finalValue = stat.textContent;
                         const isPercentage = finalValue.includes('%');
-                        const isTime = finalValue.includes('秒');
+                        const isTime = finalValue.includes('分钟');
+                        const isFormat = finalValue.includes('+') && !finalValue.includes('万');
                         const numericValue = parseInt(finalValue.replace(/[^0-9]/g, ''));
                         
                         let currentValue = 0;
@@ -631,11 +784,13 @@
                             if (isPercentage) {
                                 stat.textContent = Math.floor(currentValue) + '%';
                             } else if (isTime) {
-                                stat.textContent = Math.floor(currentValue) + '秒';
-                            } else if (numericValue >= 10000) {
+                                stat.textContent = Math.floor(currentValue) + '分钟';
+                            } else if (isFormat) {
+                                stat.textContent = Math.floor(currentValue) + '+';
+                            } else if (numericValue >= 1000000) {
                                 stat.textContent = Math.floor(currentValue / 10000) + '万+';
                             } else {
-                                stat.textContent = Math.floor(currentValue).toLocaleString() + '+';
+                                stat.textContent = Math.floor(currentValue).toLocaleString();
                             }
                         }, 50);
                     });
