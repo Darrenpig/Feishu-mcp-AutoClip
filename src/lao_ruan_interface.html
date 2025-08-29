@@ -13,13 +13,29 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
             min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 193, 7, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(255, 193, 7, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
         
         .header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 193, 7, 0.2);
             padding: 20px 0;
             position: sticky;
             top: 0;
@@ -38,8 +54,8 @@
         .logo {
             font-size: 28px;
             font-weight: bold;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            color: #FFD700;
+            text-shadow: 0 2px 8px rgba(255, 193, 7, 0.5);
         }
         
         .nav-links {
@@ -57,7 +73,8 @@
         }
         
         .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 193, 7, 0.2);
+            color: #FFD700;
         }
         
         .hero {
@@ -67,7 +84,7 @@
         }
         
         .hero h1 {
-            font-size: 48px;
+            font-size: 80px;
             margin-bottom: 20px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
@@ -80,13 +97,14 @@
         
         .release-badge {
             display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            color: white;
+            background: linear-gradient(45deg, #FFD700, #FFC107);
+            color: #1a1a1a;
             padding: 10px 20px;
             border-radius: 25px;
             font-weight: bold;
             margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+            backdrop-filter: blur(10px);
         }
         
         .features {
@@ -99,19 +117,20 @@
         }
         
         .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
             padding: 40px;
             border-radius: 20px;
             text-align: center;
             color: white;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 193, 7, 0.3);
         }
         
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(255, 193, 7, 0.2);
+            border-color: rgba(255, 193, 7, 0.6);
         }
         
         .feature-icon {
@@ -147,11 +166,13 @@
         }
         
         .ranjok-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 193, 7, 0.1) 100%);
+            backdrop-filter: blur(15px);
             padding: 30px;
             border-radius: 15px;
             color: white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.2);
         }
         
         .mcp-section {
@@ -169,42 +190,54 @@
         }
         
         .mcp-card {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(0, 0, 0, 0.5);
             padding: 30px;
             border-radius: 15px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .mcp-card:hover {
+            border-color: rgba(255, 193, 7, 0.6);
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.1);
         }
         
         .cta-section {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
             padding: 60px 20px;
             text-align: center;
             color: white;
+            border-top: 1px solid rgba(255, 193, 7, 0.2);
         }
         
         .cta-button {
             display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            color: white;
+            background: linear-gradient(45deg, #FFD700, #FFC107);
+            color: #1a1a1a;
             padding: 15px 40px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
             margin-top: 20px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+            backdrop-filter: blur(10px);
         }
         
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6);
         }
         
         .footer {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
             padding: 40px 20px;
             text-align: center;
             color: rgba(255, 255, 255, 0.8);
+            border-top: 1px solid rgba(255, 193, 7, 0.2);
         }
         
         @media (max-width: 768px) {
