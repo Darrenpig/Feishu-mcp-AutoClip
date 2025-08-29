@@ -1,261 +1,340 @@
-# Cursor Talk to Figma MCP
+# 飞书自动获客拉群系统 (Feishu AutoClip Integration)
 
-This project implements a Model Context Protocol (MCP) integration between Cursor AI and Figma, allowing Cursor to communicate with Figma for reading designs and modifying them programmatically.
+基于飞书多维表格的智能客户获取和群聊管理系统，集成AutoClip现代化设计风格，提供AI驱动的客户管理、自动拉群、智能客服等功能。
 
-https://github.com/user-attachments/assets/129a14d2-ed73-470f-9a4c-2240b2a4885c
+## 项目特色
 
-## Project Structure
+- 🤖 **AI智能客服** - 集成智能对话系统，提供自动回复和人工客服无缝切换
+- 📊 **数据可视化** - 实时展示获客效果、群聊活跃度等关键指标
+- 🎨 **现代化UI** - 借鉴AutoClip设计语言，提供优雅的用户体验
+- 🔄 **自动化流程** - 一键创建群聊，自动邀请内外部成员
+- 📱 **响应式设计** - 支持桌面端和移动端完美适配
 
-- `src/talk_to_figma_mcp/` - TypeScript MCP server for Figma integration
-- `src/cursor_mcp_plugin/` - Figma plugin for communicating with Cursor
-- `src/socket.ts` - WebSocket server that facilitates communication between the MCP server and Figma plugin
+## 项目结构
 
-## Get Started
+- `src/` - 主要业务逻辑和组件
+  - `components/` - React组件库
+  - `services/` - 飞书API集成服务
+  - `utils/` - 工具函数和配置
+  - `styles/` - AutoClip风格样式文件
+- `feishu-bitable/record-view-plugin/` - 飞书多维表格插件
+- `jianying-mcp/` - 剪映MCP集成模块
 
-1. Install Bun if you haven't already:
+## 快速开始
+
+### 环境要求
+
+- Node.js 16+
+- 飞书开发者账号
+- 飞书多维表格权限
+
+### 安装步骤
+
+1. 克隆项目并安装依赖：
 
 ```bash
-curl -fsSL https://bun.sh/install | bash
+git clone https://github.com/Darrenpig/Feishu-mcp-AutoClip.git
+cd Feishu-mcp-AutoClip
+npm install
 ```
 
-2. Run setup, this will also install MCP in your Cursor's active project
+2. 配置飞书应用：
 
 ```bash
-bun setup
+# 复制配置文件
+cp .env.example .env
+
+# 编辑配置文件，填入飞书应用信息
+# FEISHU_APP_ID=your_app_id
+# FEISHU_APP_SECRET=your_app_secret
 ```
 
-3. Start the Websocket server
+3. 启动开发服务器：
 
 ```bash
-bun socket
+npm run dev
 ```
 
-4. **NEW** Install Figma plugin from [Figma community page](https://www.figma.com/community/plugin/1485687494525374295/cursor-talk-to-figma-mcp-plugin) or [install locally](#figma-plugin)
+4. 安装飞书多维表格插件：
+   - 进入飞书多维表格
+   - 选择「插件」→「开发者模式」
+   - 上传 `feishu-bitable/record-view-plugin/` 目录
 
-## Quick Video Tutorial
+## 核心功能
 
-[Video Link](https://www.linkedin.com/posts/sonnylazuardi_just-wanted-to-share-my-latest-experiment-activity-7307821553654657024-yrh8)
+### 🎯 智能客户管理
 
-## Design Automation Example
+- **客户信息录入** - 支持批量导入和手动添加客户信息
+- **标签分类管理** - 按行业、地区、意向度等维度分类
+- **跟进状态追踪** - 实时记录沟通进度和转化状态
+- **AI智能分析** - 基于客户行为预测转化概率
 
-**Bulk text content replacement**
+### 🤖 自动拉群功能
 
-Thanks to [@dusskapark](https://github.com/dusskapark) for contributing the bulk text replacement feature. Here is the [demo video](https://www.youtube.com/watch?v=j05gGT3xfCs).
+- **一键创建群聊** - 根据客户类型自动创建专属群聊
+- **智能成员邀请** - 自动邀请相关内部员工和外部客户
+- **群聊模板配置** - 预设群聊名称、描述和欢迎语
+- **批量操作支持** - 支持同时创建多个群聊
 
-**Instance Override Propagation**
-Another contribution from [@dusskapark](https://github.com/dusskapark)
-Propagate component instance overrides from a source instance to multiple target instances with a single command. This feature dramatically reduces repetitive design work when working with component instances that need similar customizations. Check out our [demo video](https://youtu.be/uvuT8LByroI).
+### 📊 数据分析看板
 
-## Development Setup
+- **获客效果统计** - 展示客户来源、转化漏斗等关键指标
+- **群聊活跃度分析** - 监控群聊消息量、参与度等数据
+- **员工绩效报表** - 统计各员工的客户跟进情况
+- **实时数据更新** - 支持数据实时刷新和导出
 
-To develop, update your mcp config to direct to your local directory.
+## 技术栈
 
-```json
-{
-  "mcpServers": {
-    "TalkToFigma": {
-      "command": "bun",
-      "args": ["/path-to-repo/src/talk_to_figma_mcp/server.ts"]
+### 前端技术
+
+- **React 18** - 现代化前端框架
+- **TypeScript** - 类型安全的JavaScript
+- **Tailwind CSS** - 原子化CSS框架
+- **Ant Design** - 企业级UI组件库
+- **Vite** - 快速构建工具
+
+### 后端技术
+
+- **Node.js** - 服务端运行环境
+- **Express** - Web应用框架
+- **飞书开放平台API** - 官方API集成
+- **WebSocket** - 实时通信支持
+
+### 开发配置
+
+创建 `.env` 配置文件：
+
+```env
+# 飞书应用配置
+FEISHU_APP_ID=your_app_id
+FEISHU_APP_SECRET=your_app_secret
+FEISHU_VERIFICATION_TOKEN=your_verification_token
+FEISHU_ENCRYPT_KEY=your_encrypt_key
+
+# 服务配置
+PORT=3000
+NODE_ENV=development
+
+# 数据库配置（可选）
+DATABASE_URL=your_database_url
+```
+
+## 飞书应用配置
+
+### 1. 创建飞书应用
+
+1. 访问 [飞书开放平台](https://open.feishu.cn/)
+2. 创建企业自建应用
+3. 获取 App ID 和 App Secret
+4. 配置应用权限：
+   - `im:chat` - 群聊管理
+   - `im:message` - 消息发送
+   - `contact:user.id:readonly` - 用户信息读取
+   - `bitable:app` - 多维表格操作
+
+### 2. 配置回调地址
+
+在飞书应用后台配置事件回调：
+
+```
+请求地址：https://your-domain.com/api/feishu/webhook
+加密方式：AES
+签名校验：开启
+```
+
+### 3. 多维表格设置
+
+1. 创建多维表格应用
+2. 设计客户信息表结构：
+   - 客户姓名（单行文本）
+   - 联系方式（单行文本）
+   - 公司名称（单行文本）
+   - 行业分类（单选）
+   - 跟进状态（单选）
+   - 创建时间（日期）
+3. 获取表格 App Token 和 Table ID
+
+## 使用指南
+
+### 基础使用流程
+
+1. **启动系统**
+   ```bash
+   npm run dev
+   ```
+
+2. **访问管理界面**
+   - 打开浏览器访问 `http://localhost:3000`
+   - 使用飞书账号登录系统
+
+3. **客户信息管理**
+   - 在「客户管理」页面添加客户信息
+   - 支持Excel批量导入客户数据
+   - 为客户添加标签和跟进状态
+
+4. **创建群聊**
+   - 选择目标客户
+   - 点击「创建群聊」按钮
+   - 系统自动邀请相关人员加入
+
+5. **数据分析**
+   - 查看「数据看板」了解获客效果
+   - 导出统计报表进行深度分析
+
+## API 接口
+
+系统提供以下RESTful API接口：
+
+### 客户管理接口
+
+- `GET /api/customers` - 获取客户列表
+- `POST /api/customers` - 创建新客户
+- `PUT /api/customers/:id` - 更新客户信息
+- `DELETE /api/customers/:id` - 删除客户
+- `POST /api/customers/import` - 批量导入客户数据
+
+### 群聊管理接口
+
+- `GET /api/chats` - 获取群聊列表
+- `POST /api/chats` - 创建新群聊
+- `POST /api/chats/:id/members` - 添加群成员
+- `DELETE /api/chats/:id/members/:userId` - 移除群成员
+- `POST /api/chats/:id/messages` - 发送群消息
+
+### 数据分析接口
+
+- `GET /api/analytics/overview` - 获取数据概览
+- `GET /api/analytics/customers` - 客户统计数据
+- `GET /api/analytics/chats` - 群聊活跃度数据
+- `GET /api/analytics/performance` - 员工绩效数据
+- `POST /api/analytics/export` - 导出分析报表
+
+### 飞书集成接口
+
+- `POST /api/feishu/webhook` - 飞书事件回调
+- `GET /api/feishu/users` - 获取企业用户列表
+- `POST /api/feishu/auth` - 飞书OAuth认证
+
+## 部署指南
+
+### 生产环境部署
+
+1. **构建项目**
+   ```bash
+   npm run build
+   ```
+
+2. **配置生产环境变量**
+   ```env
+   NODE_ENV=production
+   PORT=80
+   FEISHU_APP_ID=your_production_app_id
+   FEISHU_APP_SECRET=your_production_app_secret
+   ```
+
+3. **启动生产服务**
+   ```bash
+   npm start
+   ```
+
+### Docker 部署
+
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+### Nginx 配置
+
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
+    
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
     }
-  }
 }
 ```
 
-## Manual Setup and Installation
+## 最佳实践
 
-### MCP Server: Integration with Cursor
+### 客户管理最佳实践
 
-Add the server to your Cursor MCP configuration in `~/.cursor/mcp.json`:
+1. **数据规范化**
+   - 统一客户信息格式
+   - 定期清理重复数据
+   - 建立标准化标签体系
 
-```json
-{
-  "mcpServers": {
-    "TalkToFigma": {
-      "command": "bunx",
-      "args": ["cursor-talk-to-figma-mcp@latest"]
-    }
-  }
-}
-```
+2. **跟进流程标准化**
+   - 制定标准跟进时间节点
+   - 设置自动提醒机制
+   - 记录详细沟通记录
 
-### WebSocket Server
+3. **群聊管理规范**
+   - 制定群聊命名规范
+   - 设置群聊管理员制度
+   - 定期清理无效群聊
 
-Start the WebSocket server:
+### 性能优化建议
 
-```bash
-bun socket
-```
+1. **数据库优化**
+   - 为常用查询字段添加索引
+   - 定期清理历史数据
+   - 使用数据库连接池
 
-### Figma Plugin
+2. **前端优化**
+   - 实现虚拟滚动处理大量数据
+   - 使用懒加载优化页面性能
+   - 合理使用缓存机制
 
-1. In Figma, go to Plugins > Development > New Plugin
-2. Choose "Link existing plugin"
-3. Select the `src/cursor_mcp_plugin/manifest.json` file
-4. The plugin should now be available in your Figma development plugins
+## 常见问题
 
-## Windows + WSL Guide
+### Q: 如何处理飞书API调用频率限制？
+A: 系统内置了请求频率控制机制，建议：
+- 使用批量接口减少API调用次数
+- 实现请求队列避免并发冲突
+- 合理设置缓存减少重复请求
 
-1. Install bun via powershell
+### Q: 群聊创建失败怎么办？
+A: 请检查以下几点：
+- 确认飞书应用权限配置正确
+- 验证目标用户是否在企业内
+- 检查网络连接和API密钥
 
-```bash
-powershell -c "irm bun.sh/install.ps1|iex"
-```
+### Q: 如何备份客户数据？
+A: 系统支持多种备份方式：
+- 定期导出Excel文件
+- 配置数据库自动备份
+- 使用飞书多维表格同步功能
 
-2. Uncomment the hostname `0.0.0.0` in `src/socket.ts`
+## 贡献指南
 
-```typescript
-// uncomment this to allow connections in windows wsl
-hostname: "0.0.0.0",
-```
+欢迎提交Issue和Pull Request来改进项目：
 
-3. Start the websocket
+1. Fork 项目仓库
+2. 创建功能分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 创建 Pull Request
 
-```bash
-bun socket
-```
+## 许可证
 
-## Usage
+MIT License - 详见 [LICENSE](LICENSE) 文件
 
-1. Start the WebSocket server
-2. Install the MCP server in Cursor
-3. Open Figma and run the Cursor MCP Plugin
-4. Connect the plugin to the WebSocket server by joining a channel using `join_channel`
-5. Use Cursor to communicate with Figma using the MCP tools
+## 联系方式
 
-## MCP Tools
+- 项目地址：[https://github.com/Darrenpig/Feishu-mcp-AutoClip](https://github.com/Darrenpig/Feishu-mcp-AutoClip)
+- 问题反馈：[Issues](https://github.com/Darrenpig/Feishu-mcp-AutoClip/issues)
 
-The MCP server provides the following tools for interacting with Figma:
+---
 
-### Document & Selection
-
-- `get_document_info` - Get information about the current Figma document
-- `get_selection` - Get information about the current selection
-- `read_my_design` - Get detailed node information about the current selection without parameters
-- `get_node_info` - Get detailed information about a specific node
-- `get_nodes_info` - Get detailed information about multiple nodes by providing an array of node IDs
-
-### Annotations
-
-- `get_annotations` - Get all annotations in the current document or specific node
-- `set_annotation` - Create or update an annotation with markdown support
-- `set_multiple_annotations` - Batch create/update multiple annotations efficiently
-- `scan_nodes_by_types` - Scan for nodes with specific types (useful for finding annotation targets)
-
-### Prototyping & Connections
-
-- `get_reactions` - Get all prototype reactions from nodes with visual highlight animation
-- `set_default_connector` - Set a copied FigJam connector as the default connector style for creating connections (must be set before creating connections)
-- `create_connections` - Create FigJam connector lines between nodes, based on prototype flows or custom mapping
-
-### Creating Elements
-
-- `create_rectangle` - Create a new rectangle with position, size, and optional name
-- `create_frame` - Create a new frame with position, size, and optional name
-- `create_text` - Create a new text node with customizable font properties
-
-### Modifying text content
-
-- `scan_text_nodes` - Scan text nodes with intelligent chunking for large designs
-- `set_text_content` - Set the text content of a single text node
-- `set_multiple_text_contents` - Batch update multiple text nodes efficiently
-
-### Auto Layout & Spacing
-
-- `set_layout_mode` - Set the layout mode and wrap behavior of a frame (NONE, HORIZONTAL, VERTICAL)
-- `set_padding` - Set padding values for an auto-layout frame (top, right, bottom, left)
-- `set_axis_align` - Set primary and counter axis alignment for auto-layout frames
-- `set_layout_sizing` - Set horizontal and vertical sizing modes for auto-layout frames (FIXED, HUG, FILL)
-- `set_item_spacing` - Set distance between children in an auto-layout frame
-
-### Styling
-
-- `set_fill_color` - Set the fill color of a node (RGBA)
-- `set_stroke_color` - Set the stroke color and weight of a node
-- `set_corner_radius` - Set the corner radius of a node with optional per-corner control
-
-### Layout & Organization
-
-- `move_node` - Move a node to a new position
-- `resize_node` - Resize a node with new dimensions
-- `delete_node` - Delete a node
-- `delete_multiple_nodes` - Delete multiple nodes at once efficiently
-- `clone_node` - Create a copy of an existing node with optional position offset
-
-### Components & Styles
-
-- `get_styles` - Get information about local styles
-- `get_local_components` - Get information about local components
-- `create_component_instance` - Create an instance of a component
-- `get_instance_overrides` - Extract override properties from a selected component instance
-- `set_instance_overrides` - Apply extracted overrides to target instances
-
-### Export & Advanced
-
-- `export_node_as_image` - Export a node as an image (PNG, JPG, SVG, or PDF) - limited support on image currently returning base64 as text
-
-### Connection Management
-
-- `join_channel` - Join a specific channel to communicate with Figma
-
-### MCP Prompts
-
-The MCP server includes several helper prompts to guide you through complex design tasks:
-
-- `design_strategy` - Best practices for working with Figma designs
-- `read_design_strategy` - Best practices for reading Figma designs
-- `text_replacement_strategy` - Systematic approach for replacing text in Figma designs
-- `annotation_conversion_strategy` - Strategy for converting manual annotations to Figma's native annotations
-- `swap_overrides_instances` - Strategy for transferring overrides between component instances in Figma
-- `reaction_to_connector_strategy` - Strategy for converting Figma prototype reactions to connector lines using the output of 'get_reactions', and guiding the use 'create_connections' in sequence
-
-## Development
-
-### Building the Figma Plugin
-
-1. Navigate to the Figma plugin directory:
-
-   ```
-   cd src/cursor_mcp_plugin
-   ```
-
-2. Edit code.js and ui.html
-
-## Best Practices
-
-When working with the Figma MCP:
-
-1. Always join a channel before sending commands
-2. Get document overview using `get_document_info` first
-3. Check current selection with `get_selection` before modifications
-4. Use appropriate creation tools based on needs:
-   - `create_frame` for containers
-   - `create_rectangle` for basic shapes
-   - `create_text` for text elements
-5. Verify changes using `get_node_info`
-6. Use component instances when possible for consistency
-7. Handle errors appropriately as all commands can throw exceptions
-8. For large designs:
-   - Use chunking parameters in `scan_text_nodes`
-   - Monitor progress through WebSocket updates
-   - Implement appropriate error handling
-9. For text operations:
-   - Use batch operations when possible
-   - Consider structural relationships
-   - Verify changes with targeted exports
-10. For converting legacy annotations:
-    - Scan text nodes to identify numbered markers and descriptions
-    - Use `scan_nodes_by_types` to find UI elements that annotations refer to
-    - Match markers with their target elements using path, name, or proximity
-    - Categorize annotations appropriately with `get_annotations`
-    - Create native annotations with `set_multiple_annotations` in batches
-    - Verify all annotations are properly linked to their targets
-    - Delete legacy annotation nodes after successful conversion
-11. Visualize prototype noodles as FigJam connectors:
-
-- Use `get_reactions` to extract prototype flows,
-- set a default connector with `set_default_connector`,
-- and generate connector lines with `create_connections` for clear visual flow mapping.
-
-## License
-
-MIT
+⭐ 如果这个项目对你有帮助，请给个Star支持一下！
