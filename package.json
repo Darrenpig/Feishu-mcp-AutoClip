@@ -1,0 +1,47 @@
+{
+  "name": "cursor-talk-to-figma-mcp",
+  "description": "Cursor Talk to Figma MCP",
+  "version": "0.3.2",
+  "module": "dist/server.js",
+  "main": "dist/server.js",
+  "bin": {
+    "cursor-talk-to-figma-mcp": "dist/server.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
+  "scripts": {
+    "start": "bun run dist/server.js",
+    "socket": "bun run src/socket.ts",
+    "setup": "./scripts/setup.sh",
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "dev": "bun run build:watch",
+    "pub:release": "bun run build && npm publish",
+    "test:poster": "bun run src/test_poster.ts",
+    "test:video": "bun run src/test_video.ts",
+    "test:monetization": "bun run src/test_monetization.ts",
+    "start:portal": "bun run src/independent_station_portal.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bun-types": "^1.2.5",
+    "tsup": "^8.4.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@lark-base-open/js-sdk": "^0.5.0",
+    "@modelcontextprotocol/sdk": "1.13.1",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/uuid": "^9.0.8",
+    "@types/ws": "^8.5.10",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "uuid": "latest",
+    "ws": "latest",
+    "zod": "3.22.4"
+  }
+}

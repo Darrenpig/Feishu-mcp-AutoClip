@@ -1,0 +1,249 @@
+/* 现代化加载动画样式 - 参考AutoClip设计风格 */
+
+/* 渐变旋转加载器 */
+.loading-gradient {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gradient-spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.gradient-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 60deg,
+    #667eea 120deg,
+    #764ba2 180deg,
+    transparent 240deg,
+    transparent 360deg
+  );
+  animation: gradientSpin 1.2s linear infinite;
+  position: relative;
+}
+
+.gradient-circle::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  background: white;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+@keyframes gradientSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 脉冲点加载器 */
+.loading-pulse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pulse-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1890ff;
+  animation: pulseScale 1.4s ease-in-out infinite;
+}
+
+.pulse-dot-1 {
+  animation-delay: 0s;
+}
+
+.pulse-dot-2 {
+  animation-delay: 0.2s;
+}
+
+.pulse-dot-3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulseScale {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* 波浪条加载器 */
+.loading-wave {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wave-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  height: 40px;
+}
+
+.wave-bar {
+  width: 6px;
+  background: linear-gradient(to top, #52c41a, #73d13d);
+  border-radius: 3px;
+  animation: waveHeight 1.2s ease-in-out infinite;
+}
+
+.wave-bar-1 {
+  animation-delay: 0s;
+}
+
+.wave-bar-2 {
+  animation-delay: 0.1s;
+}
+
+.wave-bar-3 {
+  animation-delay: 0.2s;
+}
+
+.wave-bar-4 {
+  animation-delay: 0.3s;
+}
+
+.wave-bar-5 {
+  animation-delay: 0.4s;
+}
+
+@keyframes waveHeight {
+  0%, 40%, 100% {
+    height: 12px;
+  }
+  20% {
+    height: 32px;
+  }
+}
+
+/* 默认加载器 */
+.loading-default {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .gradient-spinner {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .pulse-dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .wave-container {
+    height: 32px;
+  }
+  
+  .wave-bar {
+    width: 5px;
+  }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  .gradient-circle {
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 60deg,
+      #000 120deg,
+      #333 180deg,
+      transparent 240deg,
+      transparent 360deg
+    );
+  }
+  
+  .pulse-dot {
+    background: #000;
+  }
+  
+  .wave-bar {
+    background: linear-gradient(to top, #000, #333);
+  }
+}
+
+/* 减少动画偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+  .gradient-circle,
+  .pulse-dot,
+  .wave-bar {
+    animation-duration: 3s;
+  }
+}
+
+/* 暗色主题支持 */
+@media (prefers-color-scheme: dark) {
+  .gradient-circle::before {
+    background: #1a1a1a;
+  }
+}
+
+/* 悬浮效果 */
+.loading-gradient:hover .gradient-circle {
+  animation-duration: 0.8s;
+}
+
+.loading-pulse:hover .pulse-dot {
+  animation-duration: 1s;
+}
+
+.loading-wave:hover .wave-bar {
+  animation-duration: 0.8s;
+}
+
+/* 加载文本动画 */
+.loading-gradient .semi-typography,
+.loading-pulse .semi-typography,
+.loading-wave .semi-typography,
+.loading-default .semi-typography {
+  animation: textFade 2s ease-in-out infinite;
+}
+
+@keyframes textFade {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}

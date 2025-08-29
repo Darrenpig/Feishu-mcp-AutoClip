@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老阮独立站 - RanJok 创作平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .release-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .features {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .ranjok-section {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .ranjok-features {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .ranjok-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mcp-section {
+            padding: 80px 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .mcp-grid {
+            max-width: 800px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .mcp-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .cta-section {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+        
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .nav-links { display: none; }
+            .features { grid-template-columns: 1fr; }
+            .mcp-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">老阮独立站</div>
+            <div class="nav-links">
+                <a href="#features">功能特色</a>
+                <a href="#ranjok">RanJok</a>
+                <a href="#mcp">艺术创作MCP</a>
+                <a href="#portal">赛博交付</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="release-badge">🚀 9.22 SOP发布 😊</div>
+            <h1>RanJok 创作平台</h1>
+            <p>自动设计海报 • 自动剪视频 • 自动赚钱</p>
+        </section>
+
+        <section class="features" id="features">
+            <div class="feature-card">
+                <span class="feature-icon">🎨</span>
+                <h3>智能设计</h3>
+                <p>基于AI的自动海报设计系统，支持多种风格和模板，一键生成专业级设计作品</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🎬</span>
+                <h3>视频剪辑</h3>
+                <p>自动化视频编辑工具，智能识别内容亮点，自动配音配乐，批量生成优质视频内容</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">💰</span>
+                <h3>智能变现</h3>
+                <p>多渠道自动化营销系统，智能推广策略，实现内容创作到商业变现的全流程自动化</p>
+            </div>
+        </section>
+
+        <section class="ranjok-section" id="ranjok">
+            <h2 style="color: white; font-size: 36px; margin-bottom: 20px;">RanJok 核心功能</h2>
+            <p style="color: white; font-size: 18px; opacity: 0.9;">革命性的创作工具集，让创意变现变得简单</p>
+            
+            <div class="ranjok-features">
+                <div class="ranjok-card">
+                    <h3>自动设计海报</h3>
+                    <p>AI驱动的设计引擎，根据内容自动生成吸引人的海报设计，支持品牌定制和批量生产</p>
+                </div>
+                
+                <div class="ranjok-card">
+                    <h3>自动剪视频</h3>
+                    <p>智能视频编辑系统，自动识别精彩片段，智能配乐配字幕，一键生成短视频内容</p>
+                </div>
+                
+                <div class="ranjok-card">
+                    <h3>自动赚钱</h3>
+                    <p>智能营销系统，自动发布到多个平台，智能用户互动，数据分析优化，实现被动收入</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mcp-section" id="mcp">
+            <h2 style="font-size: 36px; margin-bottom: 20px;">艺术创作MCP</h2>
+            <p style="font-size: 18px; opacity: 0.9;">FigmaMCP + 剪映MCP 双引擎驱动</p>
+            
+            <div class="mcp-grid">
+                <div class="mcp-card">
+                    <h3>🎨 FigmaMCP</h3>
+                    <p>与Figma深度集成，自动化设计流程，支持批量操作和智能设计建议</p>
+                </div>
+                
+                <div class="mcp-card">
+                    <h3>🎬 剪映MCP</h3>
+                    <p>连接剪映生态，自动化视频制作流程，支持模板应用和批量渲染</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section" id="portal">
+            <h2 style="font-size: 36px; margin-bottom: 20px;">开放独立站端口</h2>
+            <p style="font-size: 18px; opacity: 0.9;">赛博交付 • 无缝集成 • 即插即用</p>
+            <p style="font-size: 16px; opacity: 0.8; margin-top: 10px;">通过标准化API接口，轻松接入您的现有系统</p>
+            
+            <a href="#start" class="cta-button">立即开始体验</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 老阮独立站 • RanJok创作平台 • 让创意变现变得简单</p>
+        <p style="margin-top: 10px; font-size: 14px;">9.22 SOP Release • Powered by AI</p>
+    </footer>
+
+    <script>
+        // 添加平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加滚动动画效果
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.feature-card, .ranjok-card, .mcp-card');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // 初始化动画样式
+        document.querySelectorAll('.feature-card, .ranjok-card, .mcp-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'all 0.6s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

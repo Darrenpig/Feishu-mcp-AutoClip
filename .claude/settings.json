@@ -1,0 +1,12 @@
+{
+  "env": {
+    "ANTHROPIC_API_KEY": "sk-ant-sid01--9273184f00b9d2fbed7fd5f06446bc9d4cbc4aac4fb3ac2cae17cfc6ea1d1349",
+    "ANTHROPIC_BASE_URL": "https://relay01.yhlxj.com",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1
+  },
+  "permissions": {
+    "allow": [],
+    "deny": []
+  },
+  "apiKeyHelper": "echo 'sk-ant-sid01--9273184f00b9d2fbed7fd5f06446bc9d4cbc4aac4fb3ac2cae17cfc6ea1d1349'"
+}
